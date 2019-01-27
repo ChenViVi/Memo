@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Memo</string>
+    <string name="ttAddSet">添加题册</string>
+    <string name="ttEditSet">编辑题册</string>
+    <string name="tvChange">确定</string>
+    <string name="hintSet">输入题册名称</string>
 </resources>

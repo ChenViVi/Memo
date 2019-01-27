@@ -9,18 +9,11 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
-    <android.support.v7.widget.RecyclerView
+    <LinearLayout
         android:id="@+id/rvSet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"/>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnAdd"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_margin="26dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_add"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar">
+    </LinearLayout>
 </RelativeLayout>
