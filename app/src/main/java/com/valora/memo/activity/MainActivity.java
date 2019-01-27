@@ -1,5 +1,6 @@
 package com.valora.memo.activity;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,11 +12,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
 import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import com.valora.memo.App;
-import com.valora.memo.DaoSession;
 import com.valora.memo.R;
+import com.valora.memo.model.DaoSession;
 import com.valora.memo.model.Set;
 import com.valora.memo.adapter.SetAdapter;
-import com.valora.memo.SetDao;
+import com.valora.memo.model.SetDao;
 import com.valora.memo.view.ChangeSetDialog;
 
 import java.util.ArrayList;
@@ -68,6 +69,16 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(activity, QuestionActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("set", sets.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
@@ -79,7 +90,7 @@ public class MainActivity extends BaseActivity {
                         adapter.notifyDataSetChanged();
                     }
                 }.show();
-                return false;
+                return true;
             }
         });
         rvSet.setAdapter(adapter);

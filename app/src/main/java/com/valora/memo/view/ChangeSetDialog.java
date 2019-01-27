@@ -10,11 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.valora.memo.App;
-import com.valora.memo.DaoSession;
 import com.valora.memo.R;
+import com.valora.memo.model.DaoSession;
 import com.valora.memo.model.Set;
-import com.valora.memo.SetDao;
 import com.valora.memo.Tool;
+import com.valora.memo.model.SetDao;
 
 public abstract class ChangeSetDialog extends Dialog {
 

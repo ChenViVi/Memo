@@ -4,6 +4,9 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToOne;
 
 public class Question {
+
+    private static final long serialVersionUID = -54635456843L;
+
     @Id(autoincrement = true)
     private Long id;
     private String content;

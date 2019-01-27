@@ -2,6 +2,9 @@ package com.valora.memo;
 
 import android.app.Application;
 
+import com.valora.memo.model.DaoMaster;
+import com.valora.memo.model.DaoSession;
+
 import org.greenrobot.greendao.database.Database;
 
 public class App extends Application {
