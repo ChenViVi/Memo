@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.valora.memo.App;
 import com.valora.memo.R;
+import com.valora.memo.model.DaoSession;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -88,5 +90,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public DaoSession getDaoSession() {
+        return ((App) getApplication()).getDaoSession();
     }
 }

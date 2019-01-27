@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.valora.memo.App;
 import com.valora.memo.R;
+import com.valora.memo.activity.BaseActivity;
 import com.valora.memo.model.DaoSession;
 import com.valora.memo.model.Set;
 import com.valora.memo.Tool;
@@ -18,16 +18,16 @@ import com.valora.memo.model.SetDao;
 
 public abstract class ChangeSetDialog extends Dialog {
 
-    private Activity activity;
+    private BaseActivity activity;
     private Set set;
     private boolean isUpdate = false;
 
-    public ChangeSetDialog(@NonNull Activity activity) {
+    public ChangeSetDialog(@NonNull BaseActivity activity) {
         super(activity);
         this.activity = activity;
     }
 
-    public ChangeSetDialog(@NonNull Activity activity, Set set) {
+    public ChangeSetDialog(@NonNull BaseActivity activity, Set set) {
         super(activity);
         this.activity = activity;
         this.set = set;
@@ -52,7 +52,7 @@ public abstract class ChangeSetDialog extends Dialog {
                 if (Tool.isEmpty(name))
                     Toast.makeText(getContext(), "名称不可为空", Toast.LENGTH_SHORT).show();
                 else {
-                    DaoSession daoSession = ((App) activity.getApplication()).getDaoSession();
+                    DaoSession daoSession =  activity.getDaoSession();
                     SetDao setDao = daoSession.getSetDao();
                     if (isUpdate) {
                         set.setName(name);

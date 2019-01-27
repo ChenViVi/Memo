@@ -11,9 +11,8 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
 import com.chad.library.adapter.base.listener.OnItemSwipeListener;
-import com.valora.memo.App;
+
 import com.valora.memo.R;
-import com.valora.memo.model.DaoSession;
 import com.valora.memo.model.Set;
 import com.valora.memo.adapter.SetAdapter;
 import com.valora.memo.model.SetDao;
@@ -40,8 +39,7 @@ public class MainActivity extends BaseActivity {
         rvSet = findViewById(R.id.rvSet);
         findViewById(R.id.btnAdd);
         rvSet.setLayoutManager(new LinearLayoutManager(activity));
-        DaoSession daoSession = ((App) getApplication()).getDaoSession();
-        setDao = daoSession.getSetDao();
+        setDao = getDaoSession().getSetDao();
         sets.addAll(setDao.loadAll());
         adapter = new SetAdapter(sets);
         ItemDragAndSwipeCallback itemDragAndSwipeCallback = new ItemDragAndSwipeCallback(adapter);
