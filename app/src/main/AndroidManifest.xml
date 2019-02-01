@@ -18,6 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.QuestionActivity" />
+        <activity
+            android:label="@string/ttAddQuestion"
+            android:name=".activity.AddQuestionActivity" />
     </application>
 
 </manifest>

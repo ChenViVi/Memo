@@ -2,6 +2,12 @@
     <string name="app_name">Memo</string>
     <string name="ttAddSet">添加题册</string>
     <string name="ttEditSet">编辑题册</string>
+    <string name="ttAddQuestion">添加题目</string>>
     <string name="tvChange">确定</string>
+    <string name="tvConfirm">确定</string>
     <string name="hintSet">输入题册名称</string>
+    <string name="hintQuestionContent">输入题册名称</string>
+    <string name="hintQuestionAnswer">输入答案</string>
+    <string name="tsEmpty">内容不可为空</string>
+    <string name="tsAddSuccess">添加成功</string>
 </resources>

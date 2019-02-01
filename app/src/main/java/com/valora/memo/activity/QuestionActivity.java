@@ -1,14 +1,26 @@
 package com.valora.memo.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.valora.memo.R;
+import com.valora.memo.model.Question;
+import com.valora.memo.model.QuestionDao;
 import com.valora.memo.model.Set;
+
+import java.util.List;
 
 public class QuestionActivity extends BaseActivity {
 
     private Set set;
+    private TextView tvCount;
+    private TextView tvReview;
+    private List<Question> questions;
 
     @Override
     protected int onBindView() {
@@ -21,5 +33,40 @@ public class QuestionActivity extends BaseActivity {
         enableBackBtn(true);
         set = (Set) getIntent().getSerializableExtra("set");
         setTitle(set.getName());
+        tvCount = findViewById(R.id.tvCount);
+        tvReview = findViewById(R.id.tvReview);
+        findViewById(R.id.btnStart);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(set.getId())).list();
+        tvCount.setText(String.valueOf(questions.size()));
+        tvReview.setText(String.valueOf(0));
+    }
+
+    @Override
+    public void onClick(View view) {
+        super.onClick(view);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_question, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add) {
+            Intent intent = new Intent(activity, AddQuestionActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("set", set);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

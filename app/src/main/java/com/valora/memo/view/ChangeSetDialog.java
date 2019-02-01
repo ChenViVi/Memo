@@ -1,6 +1,5 @@
 package com.valora.memo.view;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -50,7 +49,7 @@ public abstract class ChangeSetDialog extends Dialog {
             public void onClick(View v) {
                 String name = etName.getText().toString();
                 if (Tool.isEmpty(name))
-                    Toast.makeText(getContext(), "名称不可为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), activity.getString(R.string.tsEmpty), Toast.LENGTH_SHORT).show();
                 else {
                     DaoSession daoSession =  activity.getDaoSession();
                     SetDao setDao = daoSession.getSetDao();
@@ -63,6 +62,7 @@ public abstract class ChangeSetDialog extends Dialog {
                         set.setName(name);
                         setDao.insert(set);
                     }
+                    Toast.makeText(getContext(), activity.getString(R.string.tsAddSuccess), Toast.LENGTH_SHORT).show();
                     dismiss();
                     onChanged();
                 }
