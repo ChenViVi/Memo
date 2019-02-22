@@ -20,7 +20,10 @@
         <activity android:name=".activity.QuestionActivity" />
         <activity
             android:label="@string/ttAddQuestion"
-            android:name=".activity.AddQuestionActivity" />
+            android:name=".activity.EditQuestionActivity" />
+        <activity
+            android:label="@string/ttReview"
+            android:name=".activity.ReviewActivity" />
     </application>
 
 </manifest>

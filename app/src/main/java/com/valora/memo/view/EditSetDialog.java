@@ -15,36 +15,36 @@ import com.valora.memo.model.Set;
 import com.valora.memo.Tool;
 import com.valora.memo.model.SetDao;
 
-public abstract class ChangeSetDialog extends Dialog {
+public abstract class EditSetDialog extends Dialog {
 
+    private boolean isEdit = false;
     private BaseActivity activity;
     private Set set;
-    private boolean isUpdate = false;
 
-    public ChangeSetDialog(@NonNull BaseActivity activity) {
+    public EditSetDialog(@NonNull BaseActivity activity) {
         super(activity);
         this.activity = activity;
     }
 
-    public ChangeSetDialog(@NonNull BaseActivity activity, Set set) {
+    public EditSetDialog(@NonNull BaseActivity activity, Set set) {
         super(activity);
         this.activity = activity;
         this.set = set;
-        isUpdate = true;
+        isEdit = true;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_add_set);
+        setContentView(R.layout.dialog_edit_set);
         final EditText etName = findViewById(R.id.etName);
-        TextView tvChange = findViewById(R.id.tvChange);
+        TextView tvEdit = findViewById(R.id.tvEdit);
         TextView tvEditSet = findViewById(R.id.tvEditSet);
-        if (isUpdate) {
+        if (isEdit) {
             etName.setText(set.getName());
             tvEditSet.setText(R.string.ttEditSet);
         }
-        tvChange.setOnClickListener(new View.OnClickListener() {
+        tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = etName.getText().toString();
@@ -53,7 +53,7 @@ public abstract class ChangeSetDialog extends Dialog {
                 else {
                     DaoSession daoSession =  activity.getDaoSession();
                     SetDao setDao = daoSession.getSetDao();
-                    if (isUpdate) {
+                    if (isEdit) {
                         set.setName(name);
                         setDao.update(set);
                     }
@@ -62,13 +62,13 @@ public abstract class ChangeSetDialog extends Dialog {
                         set.setName(name);
                         setDao.insert(set);
                     }
-                    Toast.makeText(getContext(), activity.getString(R.string.tsAddSuccess), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), activity.getString(R.string.tsAdd), Toast.LENGTH_SHORT).show();
                     dismiss();
-                    onChanged();
+                    onEdited();
                 }
             }
         });
     }
 
-    protected abstract void onChanged();
+    protected abstract void onEdited();
 }

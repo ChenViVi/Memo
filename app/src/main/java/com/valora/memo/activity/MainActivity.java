@@ -16,7 +16,7 @@ import com.valora.memo.R;
 import com.valora.memo.model.Set;
 import com.valora.memo.adapter.SetAdapter;
 import com.valora.memo.model.SetDao;
-import com.valora.memo.view.ChangeSetDialog;
+import com.valora.memo.view.EditSetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,9 +80,9 @@ public class MainActivity extends BaseActivity {
         adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-                new ChangeSetDialog(activity, sets.get(position)) {
+                new EditSetDialog(activity, sets.get(position)) {
                     @Override
-                    protected void onChanged() {
+                    protected void onEdited() {
                         sets.clear();
                         sets.addAll(setDao.loadAll());
                         adapter.notifyDataSetChanged();
@@ -99,9 +99,9 @@ public class MainActivity extends BaseActivity {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.btnAdd:
-                new ChangeSetDialog(activity) {
+                new EditSetDialog(activity) {
                     @Override
-                    protected void onChanged() {
+                    protected void onEdited() {
                         sets.clear();
                         sets.addAll(setDao.loadAll());
                         adapter.notifyDataSetChanged();

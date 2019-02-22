@@ -5,8 +5,10 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.io.Serializable;
+
 @Entity
-public class Question {
+public class Question implements Serializable {
 
     private static final long serialVersionUID = -54635456843L;
 

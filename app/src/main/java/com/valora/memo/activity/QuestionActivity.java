@@ -13,6 +13,7 @@ import com.valora.memo.model.Question;
 import com.valora.memo.model.QuestionDao;
 import com.valora.memo.model.Set;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class QuestionActivity extends BaseActivity {
@@ -49,6 +50,17 @@ public class QuestionActivity extends BaseActivity {
     @Override
     public void onClick(View view) {
         super.onClick(view);
+        if(view.getId() == R.id.btnStart) {
+            if (questions.size() == 0)
+                toast(R.string.tsNoneQuestion);
+            else {
+                Intent intent = new Intent(activity, ReviewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("questions", (Serializable) questions);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        }
     }
 
     @Override
@@ -60,7 +72,7 @@ public class QuestionActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add) {
-            Intent intent = new Intent(activity, AddQuestionActivity.class);
+            Intent intent = new Intent(activity, EditQuestionActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("set", set);
             intent.putExtras(bundle);

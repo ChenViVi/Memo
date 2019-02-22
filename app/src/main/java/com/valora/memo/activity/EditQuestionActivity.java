@@ -11,28 +11,37 @@ import com.valora.memo.Tool;
 import com.valora.memo.model.Question;
 import com.valora.memo.model.Set;
 
-public class AddQuestionActivity extends BaseActivity {
+public class EditQuestionActivity extends BaseActivity {
 
+    private boolean isEdit;
     private Set set;
+    private Question question;
     private EditText etContent;
     private EditText etAnswer;
 
     @Override
     protected int onBindView() {
-        return R.layout.activity_add_question;
+        return R.layout.activity_edit_question;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        enableBackBtn(true);
         set = (Set) getIntent().getSerializableExtra("set");
+        question = (Question) getIntent().getSerializableExtra("question");
         etContent = findViewById(R.id.etContent);
         etAnswer = findViewById(R.id.etAnswer);
+        if (question != null) {
+            isEdit = true;
+            etContent.setText(question.getContent());
+            etAnswer.setText(question.getAnswer());
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_question, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_question, menu);
         return true;
     }
 
@@ -45,12 +54,20 @@ public class AddQuestionActivity extends BaseActivity {
                 toast(R.string.tsEmpty);
             }
             else {
-                Question question = new Question();
-                question.setSetId(set.getId());
-                question.setContent(content);
-                question.setAnswer(answer);
-                getDaoSession().getQuestionDao().insert(question);
-                toast(R.string.tsAddSuccess);
+                if (isEdit) {
+                    question.setContent(content);
+                    question.setAnswer(answer);
+                    getDaoSession().getQuestionDao().update(question);
+                    toast(R.string.tsEdit);
+                }
+                else {
+                    Question question = new Question();
+                    question.setSetId(set.getId());
+                    question.setContent(content);
+                    question.setAnswer(answer);
+                    getDaoSession().getQuestionDao().insert(question);
+                    toast(R.string.tsAdd);
+                }
                 finish();
             }
             return true;

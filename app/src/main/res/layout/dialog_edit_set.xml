@@ -35,7 +35,7 @@
         android:layout_height="1dp"
         android:background="@color/bgLine"/>
     <TextView
-        android:id="@+id/tvChange"
+        android:id="@+id/tvEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvChange"
