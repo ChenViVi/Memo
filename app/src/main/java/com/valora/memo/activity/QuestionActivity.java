@@ -55,9 +55,7 @@ public class QuestionActivity extends BaseActivity {
                 toast(R.string.tsNoneQuestion);
             else {
                 Intent intent = new Intent(activity, ReviewActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("questions", (Serializable) questions);
-                intent.putExtras(bundle);
+                intent.putExtra("setId",set.getId());
                 startActivity(intent);
             }
         }

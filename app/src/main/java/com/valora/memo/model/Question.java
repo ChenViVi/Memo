@@ -17,13 +17,16 @@ public class Question implements Serializable {
     private Long setId;
     private String content;
     private String answer;
+    private int frequency;
 
-    @Generated(hash = 279833596)
-    public Question(Long id, Long setId, String content, String answer) {
+    @Generated(hash = 53323441)
+    public Question(Long id, Long setId, String content, String answer,
+            int frequency) {
         this.id = id;
         this.setId = setId;
         this.content = content;
         this.answer = answer;
+        this.frequency = frequency;
     }
 
     @Generated(hash = 1868476517)
@@ -64,5 +67,13 @@ public class Question implements Serializable {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
 }
