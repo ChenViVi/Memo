@@ -3,17 +3,20 @@ package com.valora.memo.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.valora.memo.R;
+import com.valora.memo.Tool;
 import com.valora.memo.model.Question;
 import com.valora.memo.model.QuestionDao;
 import com.valora.memo.model.Set;
 
-import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 public class QuestionActivity extends BaseActivity {
@@ -21,7 +24,7 @@ public class QuestionActivity extends BaseActivity {
     private Set set;
     private TextView tvCount;
     private TextView tvReview;
-    private List<Question> questions;
+    /*private List<Question> questions;*/
 
     @Override
     protected int onBindView() {
@@ -42,8 +45,22 @@ public class QuestionActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(set.getId())).list();
-        tvCount.setText(String.valueOf(questions.size()));
+        /*questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(set.getId())).list();*/
+        /*for(Question question : questions) {
+            if (question.getTime() != Tool.getTodayZeroPointTimestamps()) {
+                questions.remove(question);
+            }
+        }*/
+        genQuestionsBySetId(set.getId());
+        Iterator<Question> iterator = getQuestions().iterator();
+        while(iterator.hasNext()){
+            Question question = iterator.next();
+            if(question.getTime() > Tool.getTodayZeroPointTimestamps()) {
+                iterator.remove();
+            }
+        }
+
+        tvCount.setText(String.valueOf(getQuestions().size()));
         tvReview.setText(String.valueOf(0));
     }
 
@@ -51,11 +68,14 @@ public class QuestionActivity extends BaseActivity {
     public void onClick(View view) {
         super.onClick(view);
         if(view.getId() == R.id.btnStart) {
-            if (questions.size() == 0)
+            if (getQuestions().size() == 0)
                 toast(R.string.tsNoneQuestion);
             else {
                 Intent intent = new Intent(activity, ReviewActivity.class);
                 intent.putExtra("setId",set.getId());
+                /*Bundle bundle = new Bundle();
+                bundle.putSerializable("questions", (Serializable) questions);
+                intent.putExtras(bundle);*/
                 startActivity(intent);
             }
         }

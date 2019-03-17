@@ -24,6 +24,9 @@
         <activity
             android:label="@string/ttReview"
             android:name=".activity.ReviewActivity" />
+        <activity
+            android:label="@string/ttSearch"
+            android:name=".activity.SearchActivity" />
     </application>
 
 </manifest>

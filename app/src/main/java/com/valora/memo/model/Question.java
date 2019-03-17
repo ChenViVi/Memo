@@ -1,5 +1,7 @@
 package com.valora.memo.model;
 
+import com.valora.memo.Tool;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToOne;
@@ -17,20 +19,26 @@ public class Question implements Serializable {
     private Long setId;
     private String content;
     private String answer;
-    private int frequency;
+    private int I = 1;
+    private int n = 1;
+    private double EF = 2.5;
+    private Long time;
 
-    @Generated(hash = 53323441)
-    public Question(Long id, Long setId, String content, String answer,
-            int frequency) {
+    public Question() {
+        time = Tool.getTaskZeroPointTimestamps(1);
+    }
+
+    @Generated(hash = 953868463)
+    public Question(Long id, Long setId, String content, String answer, int I,
+            int n, double EF, Long time) {
         this.id = id;
         this.setId = setId;
         this.content = content;
         this.answer = answer;
-        this.frequency = frequency;
-    }
-
-    @Generated(hash = 1868476517)
-    public Question() {
+        this.I = I;
+        this.n = n;
+        this.EF = EF;
+        this.time = time;
     }
 
     public static long getSerialVersionUID() {
@@ -69,11 +77,35 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public int getFrequency() {
-        return frequency;
+    public int getI() {
+        return I;
     }
 
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
+    public void setI(int i) {
+        I = i;
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public void setN(int n) {
+        this.n = n;
+    }
+
+    public double getEF() {
+        return EF;
+    }
+
+    public void setEF(double EF) {
+        this.EF = EF;
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 }

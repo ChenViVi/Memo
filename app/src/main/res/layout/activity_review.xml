@@ -22,23 +22,27 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
             <TextView
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="提问："
+                android:textColor="@color/colorPrimary"/>
+            <TextView
                 android:id="@+id/tvContent"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:text="dfghdsfds"/>
             <TextView
-                android:id="@+id/tvShowAnswer"
+                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="查看答案"
-                android:textSize="26sp"
-                android:background="@drawable/shape_btn"
-                android:textColor="@color/tvWhite"
-                android:gravity="center"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"/>
+                android:layout_marginTop="20dp"
+                android:text="答案："
+                android:textColor="@color/colorPrimary"/>
             <TextView
                 android:id="@+id/tvAnswer"
                 android:layout_width="match_parent"
@@ -47,54 +51,97 @@
                 android:padding="10dp"/>
         </LinearLayout>
     </ScrollView>
-    <LinearLayout
-        android:id="@+id/llBottom"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
-        <Button
-            android:id="@+id/btnLevel0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tvLevel0"
-            android:background="@drawable/shape_btn"
+        android:layout_height="130dp"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tvShowAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="查看答案"
+            android:textSize="26sp"
+            android:background="@color/colorPrimary"
             android:textColor="@color/tvWhite"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="3dp"/>
-        <Button
-            android:id="@+id/btnLevel1"
-            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"/>
+        <LinearLayout
+            android:id="@+id/llBottom"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tvLevel1"
-            android:background="@drawable/shape_btn"
-            android:textColor="@color/tvWhite"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"/>
-        <Button
-            android:id="@+id/btnLevel2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tvLevel2"
-            android:background="@drawable/shape_btn"
-            android:textColor="@color/tvWhite"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"/>
-        <Button
-            android:id="@+id/btnLevel3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tvLevel3"
-            android:background="@drawable/shape_btn"
-            android:textColor="@color/tvWhite"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="6dp"/>
-    </LinearLayout>
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone">
+            <Button
+                android:id="@+id/btnLevel0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tvLevel0"
+                android:background="@drawable/shape_btn"
+                android:textSize="12sp"
+                android:textColor="@color/tvWhite"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="3dp"/>
+            <Button
+                android:id="@+id/btnLevel1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tvLevel1"
+                android:background="@drawable/shape_btn"
+                android:textSize="12sp"
+                android:textColor="@color/tvWhite"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="3dp"/>
+            <Button
+                android:id="@+id/btnLevel2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tvLevel2"
+                android:background="@drawable/shape_btn"
+                android:textSize="12sp"
+                android:textColor="@color/tvWhite"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"/>
+            <Button
+                android:id="@+id/btnLevel3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tvLevel3"
+                android:background="@drawable/shape_btn"
+                android:textSize="12sp"
+                android:textColor="@color/tvWhite"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"/>
+            <Button
+                android:id="@+id/btnLevel4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tvLevel4"
+                android:textSize="12sp"
+                android:background="@drawable/shape_btn"
+                android:textColor="@color/tvWhite"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="6dp"/>
+            <Button
+                android:id="@+id/btnLevel5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tvLevel5"
+                android:background="@drawable/shape_btn"
+                android:textSize="12sp"
+                android:textColor="@color/tvWhite"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="6dp"/>
+        </LinearLayout>
+    </RelativeLayout>
     <TextView
         android:id="@+id/tvFinish"
         android:layout_width="match_parent"

@@ -28,14 +28,24 @@ public class EditQuestionActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         enableBackBtn(true);
-        set = (Set) getIntent().getSerializableExtra("set");
-        question = (Question) getIntent().getSerializableExtra("question");
         etContent = findViewById(R.id.etContent);
         etAnswer = findViewById(R.id.etAnswer);
+        //int count = getIntent().getIntExtra("count", -1);
+        question = (Question) getIntent().getSerializableExtra("question");
+        /*if (count != -1) {
+            isEdit = true;
+            question = getQuestions().get(count);
+            etContent.setText(question.getContent());
+            etAnswer.setText(question.getAnswer());
+        }*/
         if (question != null) {
             isEdit = true;
             etContent.setText(question.getContent());
             etAnswer.setText(question.getAnswer());
+            setTitle(R.string.ttEditQuestion);
+        }
+        else {
+            set = (Set) getIntent().getSerializableExtra("set");
         }
     }
 

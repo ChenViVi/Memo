@@ -3,14 +3,18 @@
     <string name="ttAddSet">添加题册</string>
     <string name="ttEditSet">编辑题册</string>
     <string name="ttAddQuestion">添加题目</string>
+    <string name="ttEditQuestion">编辑题目</string>
     <string name="ttReview">复习</string>
+    <string name="ttSearch">搜索结果</string>
     <string name="tvChange">确定</string>
     <string name="tvConfirm">确定</string>
     <string name="tvEdit">编辑</string>
-    <string name="tvLevel0">还是不会</string>
-    <string name="tvLevel1">不太熟悉</string>
-    <string name="tvLevel2">有点熟悉</string>
-    <string name="tvLevel3">完全掌握</string>
+    <string name="tvLevel0">一片空白</string>
+    <string name="tvLevel1">还是不会</string>
+    <string name="tvLevel2">不太熟悉</string>
+    <string name="tvLevel3">有点熟悉</string>
+    <string name="tvLevel4">完全掌握</string>
+    <string name="tvLevel5">烂熟于心</string>
     <string name="tvDelete">删除</string>
     <string name="hintSet">输入题册名称</string>
     <string name="hintQuestionContent">输入题目名称</string>
@@ -20,6 +24,7 @@
     <string name="tsEdit">修改成功</string>
     <string name="tsDelete">删除成功</string>
     <string name="tsLast">已经是最后一题了哦</string>
-    <string name="tsNoneQuestion">这个题册里没有题目，添加一些吧</string>
+    <string name="tsNoneQuestion">今天还没有复习任务哦</string>
+    <string name="tsCompleteQuestion">恭喜！你已经完成了本次学习任务</string>
     <string name="btnStartReview">开始复习</string>
 </resources>

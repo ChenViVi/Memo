@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.valora.memo.App;
 import com.valora.memo.R;
 import com.valora.memo.model.DaoSession;
+import com.valora.memo.model.Question;
+
+import java.util.List;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -76,6 +79,14 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             view.setOnClickListener(this);
         }
         return view;
+    }
+
+    public void genQuestionsBySetId(long setId){
+        ((App)getApplication()).genQuestionsBySetId(setId);
+    }
+
+    public List<Question> getQuestions(){
+        return ((App)getApplication()).getQuestions();
     }
 
     @Override
