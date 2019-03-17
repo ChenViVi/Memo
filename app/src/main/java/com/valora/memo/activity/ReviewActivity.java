@@ -124,13 +124,18 @@ public class ReviewActivity extends BaseActivity {
         else if (item.getItemId() == R.id.action_delete) {
             getDaoSession().getQuestionDao().delete(question);
             /*questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(setId)).list();*/
+            getQuestions().remove(question);
             if (getQuestions().size() == 0) {
                 toast(R.string.tsDelete);
                 finish();
             }
             else {
-                if (count >= getQuestions().size()) count--;
-                question = getQuestions().get(count);
+                if (count == getQuestions().size())
+                    question = getQuestions().get(--count);
+                else if (count > 0)
+                    question = getQuestions().get(++count);
+                else if (count == 0)
+                    question = getQuestions().get(0);
                 //tvContent.setText(question.getContent() + " " + question.getFrequency());
                 tvContent.setText(question.getContent());
                 tvAnswer.setText(question.getAnswer());
