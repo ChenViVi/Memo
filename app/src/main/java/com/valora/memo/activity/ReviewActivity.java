@@ -172,6 +172,8 @@ public class ReviewActivity extends BaseActivity {
     }
 
     private void showNext(int q){
+        question = Tool.calculateI(question, q);
+        getDaoSession().getQuestionDao().update(question);
         if (count >= getQuestions().size() - 1) {
             toast(R.string.tsCompleteQuestion);
             finish();
@@ -179,8 +181,6 @@ public class ReviewActivity extends BaseActivity {
         else {
             count++;
             //question.setFrequency(question.getFrequency() - frequency);
-            question = Tool.calculateI(question, q);
-            getDaoSession().getQuestionDao().update(question);
             question = getQuestions().get(count);
             //tvContent.setText(question.getContent() + " " + question.getFrequency());
             tvContent.setText(question.getContent());
