@@ -4,7 +4,6 @@ import com.valora.memo.Tool;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Generated;
 
 import java.io.Serializable;
@@ -22,15 +21,16 @@ public class Question implements Serializable {
     private int I = 1;
     private int n = 1;
     private double EF = 2.5;
-    private Long time;
+    private Long nextTime;
+    private Long reviewTime = 0L;
 
     public Question() {
-        time = Tool.getTaskZeroPointTimestamps(1);
+        nextTime = Tool.getTaskZeroPointTimestamps(1);
     }
 
-    @Generated(hash = 953868463)
+    @Generated(hash = 159176429)
     public Question(Long id, Long setId, String content, String answer, int I,
-            int n, double EF, Long time) {
+            int n, double EF, Long nextTime, Long reviewTime) {
         this.id = id;
         this.setId = setId;
         this.content = content;
@@ -38,7 +38,8 @@ public class Question implements Serializable {
         this.I = I;
         this.n = n;
         this.EF = EF;
-        this.time = time;
+        this.nextTime = nextTime;
+        this.reviewTime = reviewTime;
     }
 
     public static long getSerialVersionUID() {
@@ -101,11 +102,19 @@ public class Question implements Serializable {
         this.EF = EF;
     }
 
-    public Long getTime() {
-        return time;
+    public Long getNextTime() {
+        return nextTime;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
+    public void setNextTime(Long nextTime) {
+        this.nextTime = nextTime;
+    }
+
+    public Long getReviewTime() {
+        return reviewTime;
+    }
+
+    public void setReviewTime(Long reviewTime) {
+        this.reviewTime = reviewTime;
     }
 }

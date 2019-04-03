@@ -10,7 +10,6 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
     <ScrollView
-        android:id="@+id/svReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
@@ -65,7 +64,8 @@
             android:textColor="@color/tvWhite"
             android:gravity="center"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal"
+            android:visibility="gone"/>
         <LinearLayout
             android:id="@+id/llBottom"
             android:layout_width="match_parent"
@@ -73,7 +73,7 @@
             android:layout_centerVertical="true"
             android:orientation="horizontal"
             android:layout_marginBottom="10dp"
-            android:visibility="gone">
+           >
             <Button
                 android:id="@+id/btnLevel0"
                 android:layout_width="0dp"
@@ -142,18 +142,4 @@
                 android:layout_marginRight="6dp"/>
         </LinearLayout>
     </RelativeLayout>
-    <TextView
-        android:id="@+id/tvFinish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="复习完毕\n\n点击此处再复习一轮"
-        android:textSize="26sp"
-        android:background="@drawable/shape_btn"
-        android:textColor="@color/tvWhite"
-        android:padding="10dp"
-        android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
 </RelativeLayout>

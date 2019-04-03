@@ -3,8 +3,6 @@ package com.valora.memo.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,14 +15,12 @@ import com.valora.memo.model.QuestionDao;
 import com.valora.memo.model.Set;
 
 import java.util.Iterator;
-import java.util.List;
 
 public class QuestionActivity extends BaseActivity {
 
     private Set set;
     private TextView tvCount;
     private TextView tvReview;
-    /*private List<Question> questions;*/
 
     @Override
     protected int onBindView() {
@@ -45,23 +41,19 @@ public class QuestionActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        /*questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(set.getId())).list();*/
-        /*for(Question question : questions) {
-            if (question.getTime() != Tool.getTodayZeroPointTimestamps()) {
-                questions.remove(question);
-            }
-        }*/
         genQuestionsBySetId(set.getId());
         Iterator<Question> iterator = getQuestions().iterator();
+        Long todayZeroPointTimestamps = Tool.getTodayZeroPointTimestamps();
         while(iterator.hasNext()){
             Question question = iterator.next();
-            if(question.getTime() > Tool.getTodayZeroPointTimestamps()) {
+            if(question.getNextTime() > todayZeroPointTimestamps) {
                 iterator.remove();
             }
         }
-
-        tvCount.setText(String.valueOf(getQuestions().size()));
-        tvReview.setText(String.valueOf(0));
+        int unFinishCount = getQuestions().size();
+        int finishCount = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.ReviewTime.eq(todayZeroPointTimestamps)).list().size();
+        tvCount.setText(String.valueOf(unFinishCount + finishCount));
+        tvReview.setText(String.valueOf(finishCount));
     }
 
     @Override
@@ -73,9 +65,6 @@ public class QuestionActivity extends BaseActivity {
             else {
                 Intent intent = new Intent(activity, ReviewActivity.class);
                 intent.putExtra("setId",set.getId());
-                /*Bundle bundle = new Bundle();
-                bundle.putSerializable("questions", (Serializable) questions);
-                intent.putExtras(bundle);*/
                 startActivity(intent);
             }
         }

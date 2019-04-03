@@ -20,12 +20,9 @@ import java.util.List;
 public class ReviewActivity extends BaseActivity {
 
     private int count = 0;
-    /*private List<Question> questions;*/
     private TextView tvContent;
     private TextView tvShowAnswer;
     private TextView tvAnswer;
-    private TextView tvFinish;
-    private ScrollView svReview;
     private LinearLayout llBottom;
     private Question question;
 
@@ -38,13 +35,9 @@ public class ReviewActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        enableBackBtn(true);
-        /*questions = (List<Question>) getIntent().getSerializableExtra("questions");*/
         tvContent = findViewById(R.id.tvContent);
         tvShowAnswer = findViewById(R.id.tvShowAnswer);
         tvAnswer = findViewById(R.id.tvAnswer);
-        tvFinish = findViewById(R.id.tvFinish);
-        svReview = findViewById(R.id.svReview);
         llBottom = findViewById(R.id.llBottom);
         findViewById(R.id.btnLevel0);
         findViewById(R.id.btnLevel1);
@@ -57,13 +50,7 @@ public class ReviewActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(setId)).orderDesc(QuestionDao.Properties.Frequency).list();
-        //questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(setId)).list();
         question = getQuestions().get(count);
-        /*Question tmpQuestion = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.Id.eq(question.getId())).unique();
-        question.setContent(tmpQuestion.getContent());
-        question.setAnswer(tmpQuestion.getAnswer());*/
-        //tvContent.setText(question.getContent() + " " + question.getFrequency());
         tvContent.setText(question.getContent());
         tvAnswer.setText(question.getAnswer());
     }
@@ -93,16 +80,6 @@ public class ReviewActivity extends BaseActivity {
             case R.id.btnLevel5:
                 showNext(5);
                 break;
-            case R.id.tvFinish:
-                /*count = 0;
-                //questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(setId)).orderDesc(QuestionDao.Properties.Frequency).list();
-                questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(setId)).list();
-                question = questions.get(count);
-                //tvContent.setText(question.getContent() + " " + question.getFrequency());
-                tvContent.setText(question.getContent());
-                tvAnswer.setText(question.getAnswer());
-                showFinish(false);*/
-                break;
         }
     }
 
@@ -123,7 +100,6 @@ public class ReviewActivity extends BaseActivity {
         }
         else if (item.getItemId() == R.id.action_delete) {
             getDaoSession().getQuestionDao().delete(question);
-            /*questions = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.SetId.eq(setId)).list();*/
             getQuestions().remove(question);
             if (getQuestions().size() == 0) {
                 toast(R.string.tsDelete);
@@ -136,7 +112,6 @@ public class ReviewActivity extends BaseActivity {
                     question = getQuestions().get(++count);
                 else if (count == 0)
                     question = getQuestions().get(0);
-                //tvContent.setText(question.getContent() + " " + question.getFrequency());
                 tvContent.setText(question.getContent());
                 tvAnswer.setText(question.getAnswer());
                 toast(R.string.tsDelete);
@@ -158,19 +133,6 @@ public class ReviewActivity extends BaseActivity {
         }
     }
 
-    private void showFinish(boolean enable){
-        if (enable) {
-            tvFinish.setVisibility(View.VISIBLE);
-            llBottom.setVisibility(View.GONE);
-            svReview.setVisibility(View.GONE);
-        }
-        else {
-            tvFinish.setVisibility(View.GONE);
-            llBottom.setVisibility(View.VISIBLE);
-            svReview.setVisibility(View.VISIBLE);
-        }
-    }
-
     private void showNext(int q){
         question = Tool.calculateI(question, q);
         getDaoSession().getQuestionDao().update(question);
@@ -180,9 +142,7 @@ public class ReviewActivity extends BaseActivity {
         }
         else {
             count++;
-            //question.setFrequency(question.getFrequency() - frequency);
             question = getQuestions().get(count);
-            //tvContent.setText(question.getContent() + " " + question.getFrequency());
             tvContent.setText(question.getContent());
             tvAnswer.setText(question.getAnswer());
             showAnswer(false);
