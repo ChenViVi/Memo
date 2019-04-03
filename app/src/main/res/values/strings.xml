@@ -8,6 +8,7 @@
     <string name="ttSearch">搜索结果</string>
     <string name="tvChange">确定</string>
     <string name="tvConfirm">确定</string>
+    <string name="tvCancel">取消</string>
     <string name="tvEdit">编辑</string>
     <string name="tvLevel0">一片空白</string>
     <string name="tvLevel1">还是不会</string>
@@ -27,4 +28,5 @@
     <string name="tsNoneQuestion">今天还没有复习任务哦</string>
     <string name="tsCompleteQuestion">恭喜！你已经完成了本次学习任务</string>
     <string name="btnStartReview">开始复习</string>
+    <string name="delTitle">确定要删除吗？</string>
 </resources>

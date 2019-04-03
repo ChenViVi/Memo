@@ -1,8 +1,10 @@
 package com.valora.memo.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -99,23 +101,31 @@ public class ReviewActivity extends BaseActivity {
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.action_delete) {
-            getDaoSession().getQuestionDao().delete(question);
-            getQuestions().remove(question);
-            if (getQuestions().size() == 0) {
-                toast(R.string.tsDelete);
-                finish();
-            }
-            else {
-                if (count == getQuestions().size())
-                    question = getQuestions().get(--count);
-                else if (count > 0)
-                    question = getQuestions().get(++count);
-                else if (count == 0)
-                    question = getQuestions().get(0);
-                tvContent.setText(question.getContent());
-                tvAnswer.setText(question.getAnswer());
-                toast(R.string.tsDelete);
-            }
+            new AlertDialog.Builder(activity)
+                    .setTitle(R.string.delTitle)
+                    .setNegativeButton(R.string.tvCancel, null)
+                    .setPositiveButton(R.string.tvConfirm, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getDaoSession().getQuestionDao().delete(question);
+                            getQuestions().remove(question);
+                            if (getQuestions().size() == 0) {
+                                toast(R.string.tsDelete);
+                                finish();
+                            }
+                            else {
+                                if (count == getQuestions().size())
+                                    question = getQuestions().get(--count);
+                                else if (count > 0)
+                                    question = getQuestions().get(++count);
+                                else if (count == 0)
+                                    question = getQuestions().get(0);
+                                tvContent.setText(question.getContent());
+                                tvAnswer.setText(question.getAnswer());
+                                toast(R.string.tsDelete);
+                            }
+                        }
+                    }).show();
         }
         return super.onOptionsItemSelected(item);
     }
