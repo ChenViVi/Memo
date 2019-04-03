@@ -23,6 +23,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected View rootView;
     protected Toolbar toolbar;
 
+    /**
+     *  设置布局文件的 ResourceId
+     */
     protected abstract int onBindView();
 
     @Override
@@ -35,6 +38,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         setSupportActionBar(toolbar);
     }
 
+    /**
+     *  设置 ToolBar 上显示的标题
+     */
     @Override
     public void setTitle(CharSequence title) {
         super.setTitle(title);
@@ -43,6 +49,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /**
+     *  使用 string.xml 设置 ToolBar 上显示的标题
+     */
     @Override
     public void setTitle(int title) {
         super.setTitle(title);
@@ -51,6 +60,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /**
+     * ToolBar 上是否有返回按钮
+     */
     protected void enableBackBtn(boolean enabled) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(enabled);
@@ -69,10 +81,16 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         Toast.makeText(activity, "debug", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     *  不带任何参数跳转到另一个 activity 界面
+     */
     protected void startActivity(Class<?> cls) {
         startActivity(new Intent(activity, cls));
     }
 
+    /**
+     * 这里重写 findViewById 使得 所有 view 的 点击事件都绑定到 Activity 的 onClick 方法中
+     */
     public  <T extends View> T  findViewById(int id) {
         T view = rootView.findViewById(id);
         if (!(rootView.findViewById(id) instanceof AdapterView)) {

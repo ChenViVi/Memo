@@ -14,6 +14,8 @@ import com.valora.memo.model.Question;
 import com.valora.memo.model.QuestionDao;
 import com.valora.memo.model.Set;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.util.Iterator;
 
 public class QuestionActivity extends BaseActivity {
@@ -51,7 +53,8 @@ public class QuestionActivity extends BaseActivity {
             }
         }
         int unFinishCount = getQuestions().size();
-        int finishCount = getDaoSession().getQuestionDao().queryBuilder().where(QuestionDao.Properties.ReviewTime.eq(todayZeroPointTimestamps)).list().size();
+        int finishCount = getDaoSession().getQuestionDao().queryBuilder()
+                .where(QuestionDao.Properties.ReviewTime.eq(todayZeroPointTimestamps),QuestionDao.Properties.SetId.eq(set.getId())).list().size();
         tvCount.setText(String.valueOf(unFinishCount + finishCount));
         tvReview.setText(String.valueOf(finishCount));
     }

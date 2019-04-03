@@ -96,7 +96,7 @@ public class ReviewActivity extends BaseActivity {
         if (item.getItemId() == R.id.action_edit) {
             Intent intent = new Intent(activity, EditQuestionActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("question", question);
+            bundle.putSerializable("count", count);
             intent.putExtras(bundle);
             startActivity(intent);
         }
